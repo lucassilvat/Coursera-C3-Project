@@ -1,17 +1,22 @@
-  library(dplyr);library(tidyr);library(textclean)
+  library(dplyr);library(tidyr);library(textclean);library(utils)
   
-  ## reading raw data - Train and Test Set, Activities and Subjects and Features
+  ##Downloading data into main directory
+  download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip",
+                destfile="OD.zip",mode = "wb")
+  unzip("OD.zip")
   
-  train.set <- read.table("./train/X_train.txt",nrows = 7352, colClasses = numeric())
-  test.set <- read.table("./test/X_test.txt", nrows=2947, colClasses = numeric())
+  ##Reading raw data - Train and Test Set, Activities and Subjects and Features
   
-  train.activities <- read.table("./train/y_train.txt",nrows=7352)
-  test.activities <- read.table("./test/y_test.txt",nrows=2947)
+  train.set <- read.table("./UCI HAR Dataset/train/X_train.txt",nrows = 7352, colClasses = numeric())
+  test.set <- read.table("./UCI HAR Dataset/test/X_test.txt", nrows=2947, colClasses = numeric())
   
-  train.subjects <- read.table("./train/subject_train.txt",nrows=7352)
-  test.subjects <- read.table("./test/subject_test.txt",nrows=2947)
+  train.activities <- read.table("./UCI HAR Dataset/train/y_train.txt",nrows=7352)
+  test.activities <- read.table("./UCI HAR Dataset/test/y_test.txt",nrows=2947)
   
-  features.names <- read.table("features.txt")
+  train.subjects <- read.table("./UCI HAR Dataset/train/subject_train.txt",nrows=7352)
+  test.subjects <- read.table("./UCI HAR Dataset/test/subject_test.txt",nrows=2947)
+  
+  features.names <- read.table("./UCI HAR Dataset/features.txt")
   
   ##Merging Activities and Subjects to Sets
   
@@ -40,7 +45,7 @@
   dataset.subset <- dataset[,find.vec]
   
   ##Reading activities labels
-  activities.labels <- read.table("activity_labels.txt")
+  activities.labels <- read.table("./UCI HAR Dataset/activity_labels.txt")
   
   ##Labelling activities in dataset
   dataset.subset$Activities <- mgsub(dataset.subset$Activities,activities.labels[,1],activities.labels[,2])
