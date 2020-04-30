@@ -40,3 +40,7 @@ Since the final goal was to calculate the average of all the previously selected
 
 > Features are normalized and bounded within [-1,1].
 
+Activities indicate which activities were performed in each observation
+Subjects indicate subject ID
+
+
