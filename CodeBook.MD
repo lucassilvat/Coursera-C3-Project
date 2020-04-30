@@ -38,3 +38,5 @@ Other variables were discarded.
 
 Since the final goal was to calculate the average of all the previously selected variables, it was added to the end of each variable name the term "mean".
 
+> Features are normalized and bounded within [-1,1].
+
